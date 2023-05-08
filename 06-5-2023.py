@@ -20,15 +20,16 @@ def whoIsTheFastestRunner(time):
             update_time, distance, name, is_resting = heapq.heappop(heap)
             speed, running_time, rest_time = data[name]
             if is_resting:
-                if update_time + rest_time > 1234:
+                if update_time + rest_time > time:
                     res = max(distance, res)
                     continue
                 update_time += rest_time
                 is_resting = False
             else:
-                if update_time + running_time > 1234:
+                if update_time + running_time > time:
                     res = max(distance, res)
                     continue
+                
                 distance += (speed * running_time)
                 update_time += running_time
                 is_resting = True
@@ -46,5 +47,5 @@ data = {
     'Jerry': [5, 9, 18]
 }
 
-# 
+# 3540
 print(whoIsTheFastestRunner(1234))
