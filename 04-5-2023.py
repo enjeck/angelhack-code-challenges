@@ -1,3 +1,5 @@
+# Question 1: Which floor am I on?
+
 def whichFloorAmIOn(instructions):
     floor = 0
     for direction in instructions:
