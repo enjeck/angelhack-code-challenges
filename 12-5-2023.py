@@ -4,34 +4,39 @@ def decode(encoded, codebook):
     longest = 0
     length = len(encoded)
     
-    d = {}
+
+    # The codebook is given as a mapping of character -> code. 
+    # Swap the key and value to get the mapping code -> character
+    codes = {}
     for k in codebook:
         longest = max(longest, len(codebook[k]))
-        d[codebook[k]] = k
+        codes[codebook[k]] = k
     
     
-    options = []
+    result = []
 
     seen = set()
-    def getAll(i, decoded):
+    def decodeString(i, decoded_string):
         nonlocal longest
         nonlocal length
+        # If we reach the end of the string, it has been decoded successfully, so we can stop
         if i >= length:
-            options.append(decoded)
+            result.append(decoded_string)
             return
-        if decoded in seen:
+        # Avoid doing duplicate work by stopping if we encounter a result previously seen
+        if decoded_string in seen:
             return
-        seen.add(decoded)
+        seen.add(decoded_string)
         
+        # Loop through the characters coded string and check if substrings match any from the codebook
         for j in range(i+2, min(i+longest, len(encoded))+1):
-            print(i, j)
             substring = encoded[i:j]
-            if substring in d:
-                getAll(j, decoded+d[substring])
+            if substring in codes:
+                decodeString(j, decoded_string+codes[substring])
                 break
     
-    getAll(0, '')
-    return options
+    decodeString(0, '')
+    return result[0]
 
 
 codebook = {'a': '00',
@@ -65,7 +70,7 @@ codebook = {'a': '00',
 phrase = '11111011111111110001111111001011111101011111111100110111111111110001001111110100111100110111111100101111010010111111000111111111110001101111110101110011011111111111000110111101001111110010111111001011011111110100111100110111111111110001011101100011111110111111111001110111111111110001111110111111101011111111110001111110111111100111111111110001111011111110111111110100111111111100010011111101001100111111111100011101111111111010111110111111101011111011111101001111001111111111000100111111010011001111111111000111111011111111110001110011111011111110011111110010111110111111000111011111111111000111111110101111011101111111111100011111111101111111010111111110001100111111111100011111111111000111111111110001111111101011110100111111101011111111110001001111110110111111011011010011111110001111111001111111111100011111101111110100111111111100011111111010111101110111111111110001111111011011110111111110000011111110011101'
 
 # iyabloveyabangelhackyabcodeyabchallengeyabbecauseyabityabisyabfunyabandyabexcitingyabandyabiyabdislikeyabtheyabwordyabyabyabthatyabappearsyabinyabtheyabphrase
-print(decode(phrase, codebook)[0])
+print(decode(phrase, codebook))
 
         
 

@@ -4,6 +4,7 @@ import heapq
 
 def whoIsTheFastestRunner(time):
     
+    # Using a heap to keep track of the changes of each runner
     heap = [[0, 0, 'John', False], # [time to update, distance travelled so far, name (used as key for data dictionary),  resting or not (True if resting)]
                     [ 0, 0, 'James',False],
                     [ 0, 0, 'Jenna', False],
@@ -16,9 +17,11 @@ def whoIsTheFastestRunner(time):
     k = 0
     res = 0
     while k <= time and heap:
+        # At each point in time, we check if we can update the distance or running/resting status of each runner
         while heap and heap[0][0] == k:
             update_time, distance, name, is_resting = heapq.heappop(heap)
-            speed, running_time, rest_time = data[name]
+            speed, running_time, rest_time = constants[name]
+            # If the runner had been resting, make them resume running by updating the distance and status
             if is_resting:
                 if update_time + rest_time > time:
                     res = max(distance, res)
@@ -38,7 +41,7 @@ def whoIsTheFastestRunner(time):
         k += 1
     return res
 
-data = {
+constants = {
     'John': [10, 6, 20], # [Speed, Running Time, Rest Time]
     'James': [8, 8, 25],
     'Jenna': [12, 5, 16],

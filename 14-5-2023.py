@@ -5,35 +5,36 @@ import collections
 def howManySteps(string):
 
     
-    res = 0
-    c = 0
+    result = 0
 
     while string:
 
-        # First, we compress string by removing adjacent same characters
+        # Notice that given a string `aaabbaa`, we get the same result as if given the string `aba`
+        # So, we can make this tasks easier if we "compress" a string by removing adjacent same characters
         compressed = [string[0]]
-
         for s in string[1:]:
             if s != compressed[-1]:
                 compressed.append(s)
         compressed = ''.join(compressed)
 
+        # Ceate a dictionary giving the counts of each character
         counter = collections.Counter(compressed)
         mn, min_char = float("inf"), None
         for ch in counter:
+            # Get the character with the lowest count
             if counter[ch] < mn:
                 mn = counter[ch]
                 min_char = ch
         
-        # Then remove the character with minumum occurences each iteration
+        # Then remove the character with minumum count/occurence in each iteration
         new_string = []
         for ch in compressed:
             if ch != min_char:
                 new_string.append(ch)
             else:
-                res += 1
+                result += 1
         string = ''.join(new_string)
-    return res
+    return result
         
             
     

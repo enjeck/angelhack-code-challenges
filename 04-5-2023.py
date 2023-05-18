@@ -1,7 +1,11 @@
 # Question 1: Which floor am I on?
 
 def whichFloorAmIOn(instructions):
+
+    # Start at floor 0
     floor = 0
+
+    # Increment or decrement based on direction given
     for direction in instructions:
         if direction == '<':
             floor += 1
@@ -9,7 +13,7 @@ def whichFloorAmIOn(instructions):
             floor -= 1
     return floor
 
-ins = """
+instructions = """
 <<<<<<><><><><<<<><><><><><<<<><><><><><>>>><<><><><><><><><><>>>><<<<
 <><><><><><<<<<><><><><><><<<<><><><><><><><><><><><<<<<<><><<><><>>><
 <>><<><<>><><<><><><><><><><<<<<<<<<>><<><><<<><><><><<<<<<>>>>>>>>>>>
@@ -23,4 +27,4 @@ ins = """
 """ 
 
 # 56
-print(whichFloorAmIOn(ins))
+print(whichFloorAmIOn(instructions))
