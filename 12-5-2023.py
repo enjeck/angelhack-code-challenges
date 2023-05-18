@@ -1,5 +1,5 @@
 # Question 5: What do I say when I am decoded?
-from functools import lru_cache
+
 def decode(encoded, codebook):
     longest = 0
     length = len(encoded)
@@ -15,7 +15,6 @@ def decode(encoded, codebook):
     
     result = []
 
-    seen = set()
     def decodeString(i, decoded_string):
         nonlocal longest
         nonlocal length
@@ -23,14 +22,11 @@ def decode(encoded, codebook):
         if i >= length:
             result.append(decoded_string)
             return
-        # Avoid doing duplicate work by stopping if we encounter a result previously seen
-        if decoded_string in seen:
-            return
-        seen.add(decoded_string)
         
         # Loop through the characters coded string and check if substrings match any from the codebook
         for j in range(i+2, min(i+longest, len(encoded))+1):
             substring = encoded[i:j]
+            # Once a character matches, we recursively check the rest of the string
             if substring in codes:
                 decodeString(j, decoded_string+codes[substring])
                 break
@@ -72,5 +68,9 @@ phrase = '1111101111111111000111111100101111110101111111110011011111111111000100
 # iyabloveyabangelhackyabcodeyabchallengeyabbecauseyabityabisyabfunyabandyabexcitingyabandyabiyabdislikeyabtheyabwordyabyabyabthatyabappearsyabinyabtheyabphrase
 print(decode(phrase, codebook))
 
+
+# ANALYSIS
+# Time complexity: O(n), where n is the length of the input phrase
+# Space complexity: O(1)
         
 

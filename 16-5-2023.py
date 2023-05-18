@@ -61,3 +61,7 @@ test = ['....X', 'X..X.', 'X..XX', '..X..', 'X....']
 grid = ['XXXX.', 'X....', 'X..X.', '.X.X.', 'XX.XX']
 # 32509983
 print(whatsTheScore(grid))
+
+# ANALYSIS
+# Time complexity: O(n*m), where m is the number of row and n is the number of columns of the grid
+# Space complexity: O(n*m), since we create a new grid of size m*n to handle updates

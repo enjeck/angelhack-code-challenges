@@ -52,3 +52,7 @@ constants = {
 
 # 3540
 print(whoIsTheFastestRunner(1234))
+
+# ANALYSIS
+# Time complexity: O(nlogn), where n is the time. The `logn` comes from the heap's push and operations
+# Space complexity: O(k), where k is the number of runners. 

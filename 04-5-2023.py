@@ -28,3 +28,7 @@ instructions = """
 
 # 56
 print(whichFloorAmIOn(instructions))
+
+# ANALYSIS
+# Time Complexity: O(n), where n is the length of the instructions string
+# Space Complexity: O(1)

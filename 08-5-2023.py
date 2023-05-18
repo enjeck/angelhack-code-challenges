@@ -33,3 +33,7 @@ def divisibleBy7(permutation_array):
 arr = genPermutations(1867)
 # 5152.0
 print(divisibleBy7(arr))
+
+# ANALYSIS
+# Time complexity: O(n!), where n is the number of digits of the input number. This comes from the `permute` function where we get permutations. 
+# Space complexity: O(n!)

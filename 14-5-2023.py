@@ -43,3 +43,7 @@ print(howManySteps('aabbaa'))
 
 # 92
 print(howManySteps('kjslaqpwoereeeeewwwefifjdksjdfhjdksdjfkdfdlddkjdjfjfjfjjjjfjffnefhkjgefkgjefkjgkefjekihutrieruhigtefhgbjkkkknbmssdsdsfdvneurghiueor'))
+
+# ANALYSIS
+# Time complexity: O(n**2), where n is the length of the input string. 
+# Space complexity: O(n), since we create a new string and dictionary
